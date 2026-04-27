@@ -3,7 +3,7 @@ import { useCart } from '@/context/CartContext';
 import { useCurrency } from '@/context/CurrencyContext';
 import { useNavigate } from 'react-router-dom';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
 
 function getImageSrc(image: string): string {
   if (!image) return '';

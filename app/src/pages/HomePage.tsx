@@ -9,7 +9,7 @@ import SEOHead, { ORGANIZATION_SCHEMA, WEBSITE_SCHEMA } from '@/components/SEOHe
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
 
 interface Product {
   _id: string;

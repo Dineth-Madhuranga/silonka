@@ -53,15 +53,24 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/bulk-orders', bulkOrderRoutes);
 app.use('/api/blogs', blogRoutes);
 
-app.get('/', (req, res) => {
-    res.send('Silonka API is running...');
-});
-
 // Global error handler — prevents ERR_CONNECTION_RESET from unhandled promise rejections
 app.use((err, req, res, next) => {
     console.error('Unhandled error:', err.message);
     res.status(500).json({ message: err.message || 'Internal Server Error' });
 });
+
+// Serve frontend in production
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'heroku') {
+    app.use(express.static(path.join(__dirname, '../app/dist')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../app/dist', 'index.html'));
+    });
+} else {
+    app.get('/', (req, res) => {
+        res.send('Silonka API is running...');
+    });
+}
 
 const PORT = process.env.PORT || 5000;
 

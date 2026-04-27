@@ -4,7 +4,7 @@ import { Calendar, Clock, Tag, ArrowLeft, Share2 } from 'lucide-react';
 import { getBlogBySlug } from '@/lib/api';
 import SEOHead, { articleSchema, breadcrumbSchema } from '@/components/SEOHead';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
 
 function getImageSrc(image: string): string {
   if (!image) return '';
