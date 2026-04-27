@@ -1,0 +1,12 @@
+# Silonka — Ceylon Spices
+# https://silonka.com
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/login
+Disallow: /checkout
+Disallow: /login
+Disallow: /signup
+
+Sitemap: https://silonka.com/sitemap.xml

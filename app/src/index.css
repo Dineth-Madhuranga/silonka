@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4.7%;
+    --foreground: 40 20% 95%;
+    --card: 240 6% 8%;
+    --card-foreground: 40 20% 95%;
+    --popover: 240 6% 8%;
+    --popover-foreground: 40 20% 95%;
+    --primary: 43 65% 53%;
+    --primary-foreground: 0 0% 4.7%;
+    --secondary: 240 4% 12%;
+    --secondary-foreground: 40 20% 95%;
+    --muted: 240 4% 15%;
+    --muted-foreground: 40 10% 70%;
+    --accent: 43 65% 53%;
+    --accent-foreground: 0 0% 4.7%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 4% 18%;
+    --input: 240 4% 18%;
+    --ring: 43 65% 53%;
+    --radius: 0.625rem;
+    
+    /* Custom luxury variables */
+    --gold: #D4A03A;
+    --gold-hover: #E5B94D;
+    --charcoal: #0B0B0C;
+    --charcoal-light: #111114;
+    --ivory: #F4F1EA;
+    --ivory-muted: #B8B2A6;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-charcoal text-ivory font-body antialiased;
+    background-color: #0B0B0C;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+  
+  ::selection {
+    background-color: rgba(212, 160, 58, 0.3);
+    color: #F4F1EA;
+  }
+}
+
+@layer components {
+  /* Vignette overlay */
+  .vignette {
+    position: relative;
+  }
+  
+  .vignette::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  /* Noise texture overlay */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  /* Gold button styles */
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-pill font-mono text-label uppercase tracking-widest transition-all duration-300;
+    background-color: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+  }
+  
+  .btn-gold:hover {
+    background-color: var(--gold);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(212, 160, 58, 0.3);
+  }
+  
+  .btn-ivory {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-pill font-mono text-label uppercase tracking-widest transition-all duration-300;
+    background-color: var(--ivory);
+    color: var(--charcoal);
+  }
+  
+  .btn-ivory:hover {
+    background-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(212, 160, 58, 0.3);
+  }
+  
+  /* Glass card effect */
+  .glass-card {
+    @apply rounded-card overflow-hidden;
+    background: rgba(21, 21, 25, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+  }
+  
+  /* Section pinned */
+  .section-pinned {
+    @apply relative w-screen h-screen overflow-hidden;
+  }
+  
+  /* Text gradient */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #D4A03A 0%, #F0D48C 50%, #D4A03A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Intensity meter */
+  .intensity-track {
+    @apply h-1 rounded-full overflow-hidden;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .intensity-fill {
+    @apply h-full rounded-full;
+    background: linear-gradient(90deg, #D4A03A 0%, #E5B94D 100%);
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--charcoal);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(212, 160, 58, 0.3);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 160, 58, 0.5);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Animation utilities */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+}
